@@ -183,7 +183,15 @@ class Blockchain {
         let self = this;
         let stars = [];
         return new Promise((resolve, reject) => {
-            
+            self.chain.forEach((b) => {
+                let data = b.getBData();
+                if (data) {
+                    if (data.owner === address) {
+                        stars.push(data);
+                    }
+                }
+            });
+            resolve(stars);
         });
     }
 
