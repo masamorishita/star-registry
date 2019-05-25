@@ -205,8 +205,21 @@ class Blockchain {
         let self = this;
         let errorLog = [];
         return new Promise(async (resolve, reject) => {
-            
+            let promises = [];
+            let chainIndex = 0;
+            self.chain.forEach(block => {
+                promises.push(block.validate());
+                if (block.height > 0) {
+                let previousBlockHash = block.previousBlockHash;
+                let blockHash = chain[chainIndex-1].hash;
+                if (blockHash != previousBlockHash) {
+                    errorLog.push(`Error - Block Height: ${block.height} - Previous hash doesn't match.`)
+                }
+            }
+            chainIndex++;    
         });
+        resolve(errorLog);
+    });
     }
 
 }
