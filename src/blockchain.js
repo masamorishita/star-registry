@@ -218,7 +218,16 @@ class Blockchain {
                 }
             chainIndex++;    
             });
-            resolve(errorLog);
+            Promise.all(promises).then((results) => {
+                chainIndex = 0;
+                results.forEach(valid => {
+                    if(!valid){
+                        errorLog.push(`Error - Block Height: ${self.chain[chainIndex].height} - Has been Tampered.`);
+                    }
+                    chainIndex++;
+                });
+                resolve(errorLog);
+            }).catch((err) => { console.log(err); reject(err)});
         });
     }
 
