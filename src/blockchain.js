@@ -66,7 +66,7 @@ class Blockchain {
         return new Promise(async (resolve, reject) => {
             let blockObj = block;
             let height = await self.getChainHeight();
-            blockObj.time = new Date().getTime().toStrint().slice(0.-3);
+            blockObj.time = new Date().getTime().toString().slice(0.-3);
             if (height >= 0) {
                 blockObj.height = height + 1;
                 let previousBlock = self.chain[self.height];
@@ -147,7 +147,7 @@ class Blockchain {
     getBlockByHash(hash) {
         let self = this;
         return new Promise((resolve, reject) => {
-            let block = self.chain.filter(p => p.hash ===hash)[0];
+            let block = self.chain.filter(p => p.hash === hash)[0];
             if(block){
                 resolve(block);
             } else {
