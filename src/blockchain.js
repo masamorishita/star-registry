@@ -212,8 +212,8 @@ class Blockchain {
                 if (block.height > 0) {
                     let previousBlockHash = block.previousBlockHash;
                     let blockHash = chain[chainIndex-1].hash;
-                    if (blockHash != previousBlockHash) {
-                        errorLog.push(`Error - Block Height: ${block.height} - Previous hash doesn't match.`)
+                    if(blockHash != previousBlockHash){
+                        errorLog.push(`Error - Block Height: ${block.height} - Previous hash doesn't match.`);
                     }
                 }
             chainIndex++;    
