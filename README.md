@@ -61,7 +61,7 @@ You also need to include the following JSON on the body:
 If you make the POST call successfully, it should look like as followed:
 ![Screenshot 2019-05-27 at 21 55 08](https://user-images.githubusercontent.com/2709242/58421279-85ea8880-80ca-11e9-8150-d21810371651.png)
 
-# 5. Retrieve starts owned by a particular address
+## 5. Retrieve starts owned by a particular address
 You can retrieve starts owned by a particular address by using the following GET request:
 ```
 http://localhost:8000/blocks/<YOUR WALLET ADDRESS>
