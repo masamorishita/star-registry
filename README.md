@@ -50,7 +50,7 @@ You also need to include the following JSON on the body:
 {
     "address": "<YOUR WALLET ADDRESS>",
     "signature": "<YOUR SIGNATURE>",
-    "message": "YOUR MESSAGE",
+    "message": "<YOUR MESSAGE>",
     "star": {
         "dec": "68° 52' 56.9",
         "ra": "16h 29m 1.0s",
