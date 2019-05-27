@@ -11,4 +11,10 @@ Now you should be able to access the application on the URL http://localhost:800
 
 # How to use the application
 
-## 
+## 1. Access to the specific block
+
+You can access to a specified block by using GET call with the following URL:
+```
+http://localhost:8000/block/<HEIGHT OF THE BLOCK YOU'D LIKE TO ACCESS>
+```
+For example, if you access the genesis block (URL: http://localhost:8000/block/0) it looks like as followed.
