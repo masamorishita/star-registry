@@ -213,7 +213,7 @@ class Blockchain {
                     let previousBlockHash = block.previousBlockHash;
                     let blockHash = chain[chainIndex-1].hash;
                     if(blockHash != previousBlockHash){
-                        errorLog.push(`Error - Block Height: ${block.height} - Previous hash doesn't match.`);
+                        errorLog.push('Error: Previous hash does not match.');
                     }
                 }
             chainIndex++;    
@@ -222,15 +222,15 @@ class Blockchain {
                 chainIndex = 0;
                 results.forEach(valid => {
                     if(!valid){
-                        errorLog.push(`Error - Block Height: ${self.chain[chainIndex].height} - Has been Tampered.`);
+                        errorLog.push('Error: Data has been tampered.');
                     }
                     chainIndex++;
                 });
                 resolve(errorLog);
-            }).catch((err) => { console.log(err); reject(err)});
+            }).catch((err) => {console.log(err); reject(err)});
         });
     }
 
 }
 
-module.exports.Blockchain = Blockchain;   
+module.exports.Blockchain = Blockchain;
