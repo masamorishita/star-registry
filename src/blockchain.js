@@ -207,28 +207,29 @@ class Blockchain {
         return new Promise(async (resolve, reject) => {
             let promises = [];
             let chainIndex = 0;
-            let validate = await validate();
-            self.chain.forEach(block => {
-                promises.push(block.validate);
-                if (block.height > 0) {
-                    let previousBlockHash = block.previousBlockHash;
-                    let blockHash = chain[chainIndex-1].hash;
-                    if(blockHash != previousBlockHash){
-                        errorLog.push('Error: Previous hash does not match.');
+                self.chain.forEach(async (block) => {
+                    let validateBlock = await block.validate();
+                    promises.push(validateBlock);
+                    if(block.height > 0){
+                        let previousBlockHash = block.previousBlockHash;
+                        let blockHash = chain[chainIndex-1].hash;
+                        if(blockHash != previousBlockHash){
+                            errorLog.push('Error: Previous hash does not match.')
+                        }
                     }
-                }
-            chainIndex++;    
+                    chainIndex++;
             });
             Promise.all(promises).then((results) => {
                 chainIndex = 0;
                 results.forEach(valid => {
                     if(!valid){
-                        errorLog.push('Error: Data has been tampered.');
+                        errorLog.push('Error: Block has been tampered.');
                     }
                     chainIndex++;
                 });
                 resolve(errorLog);
-            }).catch((err) => {console.log(err); reject(err)});
+            }).catch((err) => {console.log(err);
+            });
         });
     }
 
