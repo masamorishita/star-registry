@@ -227,7 +227,7 @@ class Blockchain {
                     }
                     chainIndex++;
                 });
-                resolve(errorLog);
+                return errorLog;
             }).catch((err) => {console.log(err);
             });
         });
